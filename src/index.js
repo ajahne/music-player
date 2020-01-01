@@ -41,10 +41,7 @@ const songs = [
 ];
 
 function audioPlayer() {
-  console.log('audioPlayer()');
-  // const audioElement = new Audio(audioUrl);
   const audioElement = new Audio(songs[0].url);
-  // audioElement.controls = true;
   document.body.appendChild(audioElement);
   const playButton = document.getElementsByClassName('player-button-play')[0];
   const nextButton = document.getElementsByClassName('player-button-next')[0];
@@ -59,17 +56,9 @@ function audioPlayer() {
   let currentSong = 0;
   let barWidth = 0;
 
-  // if (audioElement.canPlayType('audio/mp3')) {
-  //   console.log('can play mp3');
-  //   // audioElement.setAttribute('type','audio/mp3');
-  //   audioElement.setAttribute('src',songs[0].url);
-  // }
-
   audioElement.addEventListener('loadeddata', () => {
-    console.log(`loaded data ${audioElement.duration/60}`);
+    // console.log(`loaded data ${audioElement.duration/60}`);
     loadFirstSong();
-    // audioElement.play();
-    // audioElement.pause();
   });
 
   audioElement.addEventListener('timeupdate', () => {
@@ -105,12 +94,10 @@ function audioPlayer() {
   }
 
   playButton.addEventListener('click', () => {
-    // console.log('clicked');
     toggle();
   });
 
   nextButton.addEventListener('click', () => {
-    // console.log('next clicked');
     //set bar with to 0 on new song
     //done here to remove lag of the width being set to 0 on time update
     setBarWidth(0);

@@ -55,15 +55,10 @@
   height: 50px;
   margin-top: 25px;
   margin-right: 25px;
-/*   content: url('https://static.thenounproject.com/png/286360-200.png'); */
-/*   content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgNRhJtEg2PMS5bTiZSas4Cs6ESc-nzgeUtsc4u4ofYiDZys9mZQ&s'); */
   content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOWmA1bCvc9AOn8rQ3Q-lYmtACEbSIDqtUCcK2Q-c0giB2mJp2&s');
 }
 
 .is-paused {
-/*   content: url('https://static.thenounproject.com/png/117815-200.png'); */
-
-/*   content: url('https://www.friidesigns.com/wp-content/uploads/2018/11/white-play-icon-png-6.png'); */
   content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKkbqfdlc1Y72msCya2QXsT71oE3yGBMV8Cm1O6WC2gBRW-Q5n&s');
 }
 
