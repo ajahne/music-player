@@ -42,19 +42,43 @@ const songs = [
 
 function audioPlayer() {
   const audioElement = new Audio(songs[0].url);
-  document.body.appendChild(audioElement);
-  const playButton = document.getElementsByClassName('player-button-play')[0];
-  const nextButton = document.getElementsByClassName('player-button-next')[0];
-  const icon = document.getElementsByClassName('player-img')[0];
-  const title = document.getElementsByClassName('player-song-title')[0];
-  const bar = document.getElementById('bar');
-  const progress = document.getElementById('progress');
-
   const isPlayingClass = 'is-playing';
   const isPausedClass = 'is-paused';
   let playing = false;
   let currentSong = 0;
   let barWidth = 0;
+
+  let playButton;
+  let nextButton;
+  let icon;
+  let title;
+  let artist;
+  let bar;
+  let progress;
+  let musicPlayer;
+
+  function appendAudioElement() {
+    document.body.appendChild(audioElement);
+  }
+
+  function createMusicPlayerElements() {
+    musicPlayer = document.getElementById('music-player');
+    playButton = musicPlayer.getElementsByClassName('play-button')[0];
+    nextButton = musicPlayer.getElementsByClassName('next-button')[0];
+    icon = musicPlayer.getElementsByClassName('image')[0];
+    title = musicPlayer.getElementsByClassName('song-title')[0];
+    artist = musicPlayer.getElementsByClassName('song-artist')[0];
+    bar = musicPlayer.getElementsByClassName('bar')[0];
+    progress = musicPlayer.getElementsByClassName('progress')[0];
+  }
+
+  function init() {
+    appendAudioElement();
+    createMusicPlayerElements();
+  }
+
+  init();
+
 
   audioElement.addEventListener('loadeddata', () => {
     // console.log(`loaded data ${audioElement.duration/60}`);
@@ -90,7 +114,7 @@ function audioPlayer() {
 
   function loadFirstSong() {
     changePlayerIcon();
-    changePlayerTitle();
+    changeTrackInfo();
   }
 
   playButton.addEventListener('click', () => {
@@ -109,7 +133,7 @@ function audioPlayer() {
     audioElement.src = songs[currentSong].url;
 
     changePlayerIcon();
-    changePlayerTitle();
+    changeTrackInfo();
 
     play();
   });
@@ -118,8 +142,9 @@ function audioPlayer() {
     icon.src = songs[currentSong].icon;
   }
 
-  function changePlayerTitle() {
-    title.innerHTML = songs[currentSong].artist + '<br>' + songs[currentSong].title;
+  function changeTrackInfo() {
+    title.innerHTML = songs[currentSong].title;
+    artist.innerHTML = songs[currentSong].artist;
   }
 
   function play() {

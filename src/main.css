@@ -1,0 +1,20 @@
+:root {
+  --main-background-color:black;
+  --main-text-color:white;
+  --secondary-text-color:#777777;
+  --song-number-text-color:#353535;
+  --song-wrapper-border-color:#333333;
+  --font-size-small: 13px;
+  --font-size-medium: 16px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: var(--main-background-color);
+}
