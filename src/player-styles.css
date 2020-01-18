@@ -41,8 +41,18 @@
 
 .wrapper .play-button {
   cursor: pointer;
+  margin:auto;
   width: 100%;
   height: 100%;
+}
+
+.wrapper .play-button.is-playing {
+  width: 40%;
+  height: 40%;
+  content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOWmA1bCvc9AOn8rQ3Q-lYmtACEbSIDqtUCcK2Q-c0giB2mJp2&s');
+}
+
+.wrapper .play-button.is-paused {
   content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKkbqfdlc1Y72msCya2QXsT71oE3yGBMV8Cm1O6WC2gBRW-Q5n&s');
 }
 
@@ -51,9 +61,6 @@
   margin: auto;
   width: 80%;
   height: 80%;
-  align-items: center;
-  display: flex;
-  justify-content: center;
   content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzfX5Hj6-Bc_NPLFfNpnPt-CvnyqkYZ4pQLs_Le8YmVxj-5O4C&s');
 }
 
