@@ -20,8 +20,3 @@ html, body {
 body {
   background-color: var(--main-background-color);
 }
-
-.footer {
-  position: sticky;
-  bottom: 0;
-}
