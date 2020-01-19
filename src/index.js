@@ -44,6 +44,8 @@ function audioPlayer() {
   const audioElement = new Audio(songs[0].url);
   const isPlayingClass = 'is-playing';
   const isPausedClass = 'is-paused';
+  const barWidthBuffer = 1.5; //used to align bar with finger of cursor
+
   let playing = false;
   let currentSong = 0;
   let barWidth = 0;
@@ -79,29 +81,30 @@ function audioPlayer() {
 
   init();
 
-
   audioElement.addEventListener('loadeddata', () => {
-    // console.log(`loaded data ${audioElement.duration/60}`);
     loadFirstSong();
   });
 
   audioElement.addEventListener('timeupdate', () => {
     barWidth = (audioElement.currentTime/audioElement.duration) * 100;
-    setBarWidth(`${barWidth}%`);
+    setBarWidth(barWidth);
+    if(barWidth === 100) {
+      next();
+    }
   });
 
   progress.addEventListener('click', (e) => {
     let position = e.pageX - progress.offsetLeft - 10;
     let percentage = position/progress.offsetWidth * 100;
-    //put song in this position;
-    //duration * percentage;
     audioElement.currentTime = audioElement.duration * (percentage/100);
-    setBarWidth(`${percentage}%`);
-
+    setBarWidth(percentage);
   });
 
   function setBarWidth(value) {
-    bar.style.width = value;
+    value += barWidthBuffer;
+    //clamp value
+    value = value < 100 ? value : 100;
+    bar.style.width = `${value}%`;
   }
 
   function toggle() {
@@ -122,20 +125,7 @@ function audioPlayer() {
   });
 
   nextButton.addEventListener('click', () => {
-    //set bar with to 0 on new song
-    //done here to remove lag of the width being set to 0 on time update
-    setBarWidth(0);
-    if (currentSong < songs.length-1) {
-      currentSong++;
-    } else {
-      currentSong = 0;
-    }
-    audioElement.src = songs[currentSong].url;
-
-    changePlayerIcon();
-    changeTrackInfo();
-
-    play();
+    next();
   });
 
   function changePlayerIcon() {
@@ -161,6 +151,23 @@ function audioPlayer() {
     //change to pause button
     playButton.classList.add(isPausedClass);
     playButton.classList.remove(isPlayingClass);
+  }
+
+  function next() {
+    //set bar with to 0 on new song
+    //done here to remove lag of the width being set to 0 on time update
+    setBarWidth(0);
+    if (currentSong < songs.length-1) {
+      currentSong++;
+    } else {
+      currentSong = 0;
+    }
+    audioElement.src = songs[currentSong].url;
+
+    changePlayerIcon();
+    changeTrackInfo();
+
+    play();
   }
 }
 
