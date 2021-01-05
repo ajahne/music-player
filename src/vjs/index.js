@@ -52,6 +52,7 @@ function audioPlayer() {
 
   let playButton;
   let nextButton;
+  let backButton;
   let icon;
   let title;
   let artist;
@@ -93,6 +94,7 @@ function audioPlayer() {
     musicPlayer = document.getElementById('music-player');
     playButton = musicPlayer.getElementsByClassName('play-button')[0];
     nextButton = musicPlayer.getElementsByClassName('next-button')[0];
+    backButton = musicPlayer.getElementsByClassName('back-button')[0];
     icon = musicPlayer.getElementsByClassName('image')[0];
     title = musicPlayer.getElementsByClassName('song-title')[0];
     artist = musicPlayer.getElementsByClassName('song-artist')[0];
@@ -155,6 +157,10 @@ function audioPlayer() {
     next();
   });
 
+  backButton.addEventListener('click', () => {
+    back();
+  });
+
   function changePlayerIcon() {
     icon.src = songs[currentSong].icon;
   }
@@ -186,6 +192,23 @@ function audioPlayer() {
     setBarWidth(0);
     if (currentSong < songs.length-1) {
       currentSong++;
+    } else {
+      currentSong = 0;
+    }
+    audioElement.src = songs[currentSong].url;
+
+    changePlayerIcon();
+    changeTrackInfo();
+
+    play();
+  }
+
+  function back() {
+    //set bar with to 0 on new song
+    //done here to remove lag of the width being set to 0 on time update
+    setBarWidth(0);
+    if (currentSong > 0) {
+      currentSong--;
     } else {
       currentSong = 0;
     }
