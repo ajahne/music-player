@@ -12,7 +12,7 @@
 
 .wrapper {
   display: grid;
-  grid-template-columns: 75px 1fr 50px 50px;
+  grid-template-columns: 75px 1fr 50px 50px 50px;
   grid-gap: 5px;
   grid-auto-rows: minmax(75px, auto);
   /* border: 2px solid darkorange; */
@@ -60,6 +60,15 @@
 }
 
 .wrapper .next-button {
+  cursor: pointer;
+  margin: auto;
+  width: 80%;
+  height: 80%;
+  content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzfX5Hj6-Bc_NPLFfNpnPt-CvnyqkYZ4pQLs_Le8YmVxj-5O4C&s');
+}
+
+.wrapper .back-button {
+  transform: rotate(180deg);
   cursor: pointer;
   margin: auto;
   width: 80%;
